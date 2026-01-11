@@ -17,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-_+1lqp6s732)7_dlu#yw+!1i66
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 # Permitir todos los hosts en Railway para evitar errores de dominio
-ALLOWED_HOSTS = ['.onrender.com']
+ALLOWED_HOSTS = ['multimetro.onrender.com', '0.0.0.0']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
