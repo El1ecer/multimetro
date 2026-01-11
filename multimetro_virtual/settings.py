@@ -90,7 +90,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Almacenamiento optimizado para producción con compresión
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 # --- SEGURIDAD ADICIONAL PARA DESPLIEGUE ---
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
