@@ -17,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-_+1lqp6s732)7_dlu#yw+!1i66
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 # Permitir todos los hosts en Railway para evitar errores de dominio
-ALLOWED_HOSTS = ['on.render.com']
+ALLOWED_HOSTS = ['.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -96,5 +96,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     #'https://*.railway.app',
     #'https://*.up.railway.app',
-    'https://*.on.render.com'
+    'https://*.onrender.com'
 ]
