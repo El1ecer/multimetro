@@ -1,1 +1,1 @@
-web: gunicorn multimetro_virtual.wsgi
+web: gunicorn --pythonpath . multimetro_virtual.wsgi
