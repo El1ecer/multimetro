@@ -1,0 +1,213 @@
+{% extends 'simulador/base.html' %}
+{% load static %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="container py-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-8 mb-5"> 
+            <div class="multimetro-shell shadow-lg">
+                <div class="multimetro-body p-4">
+                    
+                    <div id="display" class="display-screen mb-4 display-off"></div>
+
+                    <div class="d-flex justify-content-end align-items-center mb-4 gap-2">
+                        <div id="spinner" class="d-none me-auto">
+                            <div class="spinner-border spinner-border-sm text-success"></div>
+                        </div>
+                      
+                        <button id="power-btn" class="btn btn-danger btn-action" onclick="togglePower()">
+                            <i class="bi bi-power"></i> OFF
+                        </button>
+                        <button id="btn-medir" class="btn btn-success btn-action" onclick="calcular()" disabled>
+                            <i class="bi bi-lightning-charge"></i> MEDIR
+                        </button>
+                    </div>
+
+                    <div class="perilla-container">
+                        <div class="perilla-wrapper">
+                            <span class="modo-label label-auto" data-modo="auto">AUTO</span>
+                            <span class="modo-label label-v" data-modo="voltaje">V</span>
+                            <span class="modo-label label-a" data-modo="corriente">A</span>
+                            <span class="modo-label label-r" data-modo="resistencia">Ω</span>
+                            <span class="modo-label label-p" data-modo="potencia">W</span>
+
+                            <div class="perilla" id="perilla">
+                                <div class="perilla-indicador"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pines-container mt-5">
+                        <div class="row g-2">
+                            <div class="col-4 text-center">
+                                <label class="text-muted small d-block">Voltaje</label>
+                                <input type="number" id="voltaje" class="form-control pin-input" placeholder="V" onkeypress="return isNumberKey(event)">
+                            </div>
+                            <div class="col-4 text-center">
+                                <label class="text-muted small d-block">Amperios</label>
+                                <input type="number" id="corriente" class="form-control pin-input" placeholder="A" onkeypress="return isNumberKey(event)">
+                            </div>
+                            <div class="col-4 text-center">
+                                <label class="text-muted small d-block">Ohmios</label>
+                                <input type="number" id="resistencia" class="form-control pin-input" placeholder="Ω" onkeypress="return isNumberKey(event)">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="modo" value="auto">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 mt-5">
+          <div class="historial-container p-4 rounded-4 shadow-sm bg-light border">
+              <div class="d-flex align-items-center justify-content-center mb-4 border-bottom pb-2">
+                  <i class="bi bi-clock-history fs-4 me-2 text-primary"></i>
+                  <h5 class="text-dark fw-bold m-0" style="letter-spacing: 1px;">REGISTROS DE MEDICIÓN</h5>
+              </div>
+              
+              <div id="historial" class="row g-3 justify-content-center historial-scroll-area">
+                  <div class="col-12 text-center py-4 text-muted">
+                      <p class="mb-0 italic">Esperando mediciones...</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+<style>
+.multimetro-shell { 
+    background: #fbc02d; 
+    border-radius: 60px; 
+    border: 8px solid #333;
+    padding: 15px;
+    min-height: 680px;
+}
+.multimetro-body { 
+    background: #1a1a1a; 
+    border-radius: 45px; 
+    height: 100%;
+}
+
+.display-screen {
+    height: 130px; 
+    background: #050d06; 
+    border: 6px solid #222;
+    border-radius: 15px; 
+    color: #00ff66; 
+    font-size: 3rem;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-family: 'Courier New', monospace; 
+    text-shadow: 0 0 15px #00ff66;
+}
+.display-off { background: #000 !important; color: transparent !important; text-shadow: none !important; }
+
+.perilla-wrapper { position: relative; height: 220px; width: 220px; margin: 30px auto; }
+.modo-label {
+    position: absolute; cursor: pointer; font-size: 1.2rem;
+    color: #777; transition: 0.3s ease; z-index: 10; font-weight: 800;
+}
+.modo-label:hover { 
+    color: #fff; 
+    text-shadow: 0 0 15px #00d9ff, 0 0 30px #00d9ff; 
+    transform: scale(1.4); 
+}
+.label-active { color: #00ff66 !important; text-shadow: 0 0 10px #00ff66; }
+
+.label-auto { top: -35px; left: 50%; transform: translateX(-50%); }
+.label-v { top: 15%; right: -30px; }
+.label-a { bottom: 10px; right: -5px; }
+.label-r { bottom: 10px; left: -5px; }
+.label-p { top: 15%; left: -30px; }
+
+.perilla {
+    width: 130px; height: 130px; 
+    background: radial-gradient(circle, #444, #111);
+    border-radius: 50%; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg); 
+    border: 6px solid #333; 
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+.perilla-indicador { width: 6px; height: 45px; background: #fff; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); border-radius: 3px; }
+
+.btn-action { font-weight: bold; padding: 10px 20px; border: none; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+.btn-action:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.5); }
+.pin-input { background: #222 !important; color: #00ff66 !important; border: 1px solid #444 !important; font-weight: bold; text-align: center; }
+
+.historial-card {
+    background: white;
+    border-left: 5px solid #198754;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+.historial-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+.historial-valor { font-family: monospace; font-size: 1.3rem; font-weight: 800; color: #333; }
+.historial-label { font-size: 0.7rem; color: #888; text-transform: uppercase; font-weight: bold; }
+</style>
+
+<script>
+  window.powerOn = false;
+
+  function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) return false;
+    return true;
+  }
+
+  function togglePower() {
+    window.powerOn = !window.powerOn;
+    const d = document.getElementById("display");
+    const b = document.getElementById("btn-medir");
+    const p = document.getElementById("power-btn");
+
+    if (window.powerOn) {
+      d.classList.remove("display-off");
+      d.innerText = "0.00";
+      b.disabled = false;
+      p.innerHTML = '<i class="bi bi-power"></i> ON';
+      p.classList.replace("btn-danger", "btn-success");
+    } else {
+      d.classList.add("display-off");
+      d.innerText = "";
+      b.disabled = true;
+      p.innerHTML = '<i class="bi bi-power"></i> OFF';
+      p.classList.replace("btn-success", "btn-danger");
+    }
+  }
+
+  document.querySelectorAll('.modo-label').forEach(label => {
+    label.addEventListener('click', function() {
+      if (!window.powerOn) return; 
+      
+      const val = this.getAttribute('data-modo');
+      const perilla = document.getElementById("perilla");
+      const select = document.getElementById("modo");
+
+      const angles = { 
+        "auto": 0,        
+        "voltaje": 68,    
+        "corriente": 145,  
+        "resistencia": 215, 
+        "potencia": 292    
+      };
+      
+      perilla.style.transform = `translate(-50%, -50%) rotate(${angles[val]}deg)`;
+      
+      select.value = val;
+      
+      document.querySelectorAll('.modo-label').forEach(l => l.classList.remove('label-active'));
+      this.classList.add('label-active');
+    });
+  });
+</script>
+{% endblock %}

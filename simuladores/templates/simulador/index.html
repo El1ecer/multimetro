@@ -1,0 +1,192 @@
+{% extends 'simulador/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<div class="main-banner" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="owl-carousel owl-banner">
+                    <div class="item item-1">
+                        <div class="header-text">
+                            <span class="category">Entorno Virtual de Medición</span>
+                            <h2>Simulador de Multímetro Digital</h2><br>
+                            <div class="buttons">
+                                <div class="main-button">
+                                    <a href="{% url 'simuladores:multimetro' %}">Abrir Simulador</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="services section" id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <img src="{% static 'scholar/assets/images/service-01.png' %}" alt="online courses">
+                    </div>
+                    <div class="main-content">
+                        <h4>Motor de Precisión</h4>
+                        <p>Resultados con resolución de dos decimales basados en modelos matemáticos estandarizados.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <img src="{% static 'scholar/assets/images/service-02.png' %}" alt="short courses">
+                    </div>
+                    <div class="main-content">
+                        <h4>Detección Inteligente</h4>
+                        <p>El modo AUTO identifica el parámetro ausente y realiza el despeje de la fórmula automáticamente.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <img src="{% static 'scholar/assets/images/service-03.png' %}" alt="web experts">
+                    </div>
+                    <div class="main-content">
+                        <h4>Seguridad O.L</h4>
+                        <p>Simulación de protección por sobrecarga cuando los valores exceden los límites nominales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section testimonials" style="margin-top: 0; padding-top: 80px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="section-heading">
+                    <h6>Base Científica</h6>
+                    <h2>Fórmulas del Motor de Simulación</h2>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="theory-card">
+                    <div class="card-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                    <h4>Voltaje (V)</h4>
+                    <p>Es la presión que empuja los electrones. Se calcula multiplicando corriente por resistencia.</p>
+                    <div class="formula-box">V = I × R</div>
+                    <span class="badge bg-warning text-dark">Unidad: Voltios</span>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="theory-card" style="border-top-color: #0dcaf0;">
+                    <div class="card-icon" style="color: #0dcaf0;"><i class="bi bi-water"></i></div>
+                    <h4>Corriente (I)</h4>
+                    <p>Es el flujo de electrones por segundo. Se obtiene dividiendo voltaje entre resistencia.</p>
+                    <div class="formula-box" style="color: #0dcaf0;">I = V / R</div>
+                    <span class="badge bg-info text-dark">Unidad: Amperios</span>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="theory-card" style="border-top-color: #198754;">
+                    <div class="card-icon" style="color: #198754;"><i class="bi bi-speedometer2"></i></div>
+                    <h4>Potencia (P)</h4>
+                    <p>Es la velocidad de transferencia de energía. Producto del voltaje por la corriente.</p>
+                    <div class="formula-box" style="color: #198754;">P = V × I</div>
+                    <span class="badge bg-success">Unidad: Vatios (W)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section about-us" id="about">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                ¿Cómo usar el Modo Automático?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Coloque la perilla en <strong>AUTO</strong> e ingrese dos valores cualesquiera. El sistema calculará automáticamente la magnitud faltante.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                ¿Qué significa el mensaje O.L?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Significa <strong>Over Load</strong> (Sobrecarga). Aparece cuando el valor calculado supera el rango operativo de 5000 unidades o hay un error matemático.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="section-heading">
+                    <h6>Especificaciones</h6>
+                    <h2>Capacidades Técnicas</h2>
+                    <ul class="tech-list">
+                        <li><i class="bi bi-cpu"></i> Procesamiento en Tiempo Real</li>
+                        <li><i class="bi bi-shield-check"></i> Rango: 0.01 - 5000.00</li>
+                        <li><i class="bi bi-clock-history"></i> Historial de 15 registros</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .theory-card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        border-top: 5px solid #fbc02d;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+        transition: 0.3s;
+    }
+    .theory-card:hover { transform: translateY(-5px); }
+    .card-icon { font-size: 2.5rem; color: #fbc02d; margin-bottom: 15px; }
+    
+    .formula-box {
+        background: #1e1e1e;
+        color: #fbc02d;
+        padding: 15px;
+        border-radius: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 15px 0;
+    }
+
+    .tech-list { list-style: none; padding: 0; margin-top: 30px; }
+    .tech-list li { margin-bottom: 20px; font-weight: 600; display: flex; align-items: center; }
+    .tech-list i { color: #fbc02d; margin-right: 15px; font-size: 1.3rem; }
+
+    .accordion-button:not(.collapsed) {
+        background-color: #fbc02d;
+        color: #000;
+    }
+</style>
+{% endblock %}

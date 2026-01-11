@@ -1,0 +1,110 @@
+
+
+.multimetro-card {
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    animation: fadeInUp 0.5s ease;
+}
+
+.display-active {
+    box-shadow: 0 0 15px #00ff66;
+}
+
+.slider-perilla {
+    accent-color: #7a6ad8;
+}
+
+
+.display-screen.power-off {
+    background-color: #0c0c0c !important;
+    color: #222 !important;
+}
+
+#spinner {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.modo-label { cursor: pointer; transition: 0.3s; font-weight: bold; }
+.modo-label:hover { color: #00ff00; transform: scale(0.4); }
+
+.is-off { filter: grayscale(0.8) brightness(0.5); }
+.power-btn-container { pointer-events: all !important; }
+
+.historial-scroll { max-height: 300px; overflow-y: auto; }
+.container-grafica { height: 350px; }
+/* Ajuste para que la gráfica se vea correctamente */
+.container-grafica {
+    position: relative;
+    height: 400px; /* Altura fija para que Chart.js pueda dibujar */
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Pantalla del display */
+.display-screen {
+    position: relative;
+    min-height: 110px;
+    background-color: #1a1a1a;
+    color: #00ff00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', monospace;
+    font-size: 2.2rem;
+    border-radius: 12px;
+    border: 4px solid #333;
+}
+
+/* Pantalla Apagada */
+.display-off {
+    background-color: #0d0d0d !important;
+    border-color: #222 !important;
+    color: transparent !important;
+    box-shadow: inset 0 0 15px #000 !important;
+}
+
+/* Etiquetas de Modo */
+.modo-label {
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Animación y Color al pasar el cursor (Hover) */
+.modo-label:hover {
+    color: #00f2ff;
+    text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
+    transform: scale(1.3);
+}
+
+/* Color cuando el modo está seleccionado */
+.active-mode {
+    color: #00ff66 !important;
+    text-shadow: 0 0 10px #00ff66;
+}
+
+/* Estilo del Botón Medir y Power */
+.btn-medicion {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.2s;
+}
+
+.btn-medicion:active {
+    transform: translateY(2px);
+}
+
