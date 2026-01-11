@@ -19,7 +19,6 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 # Permitir todos los hosts en Railway para evitar errores de dominio
 ALLOWED_HOSTS = ['*', '.railway.app', '.up.railway.app']
 
-# --- DEFINICIÓN DE APLICACIONES ---
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -27,12 +26,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'simuladores',  # Tu aplicación
+    'simuladores',  
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Manejo de archivos estáticos en producción
+    'whitenoise.middleware.WhiteNoiseMiddleware',  
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
