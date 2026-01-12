@@ -17,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-_+1lqp6s732)7_dlu#yw+!1i66
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 # Permitir todos los hosts en Railway para evitar errores de dominio
-ALLOWED_HOSTS = ['*', '.railway.app', '.up.railway.app']
+ALLOWED_HOSTS = ['multimetro.onrender.com', '0.0.0.0']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -94,6 +94,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Orígenes confiables para evitar errores 403 con formularios
 CSRF_TRUSTED_ORIGINS = [
-    'https://*.railway.app',
-    'https://*.up.railway.app'
+    #'https://*.railway.app',
+    #'https://*.up.railway.app',
+    'https://*.onrender.com'
 ]
