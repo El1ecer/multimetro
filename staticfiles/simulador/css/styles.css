@@ -148,6 +148,12 @@ main, .main-content {
     width: auto;
 }
 
+.footer-logo {
+        height: 100px; 
+        width: auto;  
+        object-fit: contain; 
+    }
+
 .footer-text {
     margin: 0 15px;
     font-size: 0.9rem;
