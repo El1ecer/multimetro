@@ -135,17 +135,24 @@ main, .main-content {
     text-decoration: none;
 }
 
-.lab-brand-footer img {
-    height: auto;
-    padding-top: 25px;
-    width: 20%;
+.footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* imagen izquierda, texto centro, imagen derecha */
+    text-align: center;
 }
 
-.lab-brand-footer {
-    display: unset;
-    align-items: center;
-    text-decoration: none;
+.lab-brand img,
+.lab-brand-footer img {
+    height: 60px;   /* tamaño definido */
+    width: auto;
 }
+
+.footer-text {
+    margin: 0 15px;
+    font-size: 0.9rem;
+}
+
 
 .lab-brand-icon {
     font-size: 1.4rem;
