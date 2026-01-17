@@ -124,7 +124,8 @@ main, .main-content {
 }
 
 .lab-brand img {
-    height: 56px;
+    height: 84px;
+    width: auto;
 }
 
 .lab-brand {
