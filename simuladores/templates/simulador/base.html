@@ -33,13 +33,13 @@
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <script src="{% static 'simulador/js/multimetro.js' %}"></script>
 
 
 </head>
 
-<body >
+<body>
 
     <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
@@ -68,11 +68,11 @@
 
                         <ul class="nav">
                             <li><a href="{% url 'simuladores:inicio' %}">
-                                <i class="bi bi-house-door-fill"></i> Inicio
-                            </a></li>
+                                    <i class="bi bi-house-door-fill"></i> Inicio
+                                </a></li>
                             <li><a href="{% url 'simuladores:multimetro' %}">
-                                <i class="bi bi-calculator"></i> Multímetro
-                            </a></li>
+                                    <i class="bi bi-calculator"></i> Multímetro
+                                </a></li>
                         </ul>
 
                         <a class="menu-trigger">
@@ -86,12 +86,18 @@
     </header>
     <br><br><br>
 
-    
+
 
     {% block content %}{% endblock %}
     <footer class="footer mt-auto py-3 bg-dark text-white border-top border-secondary">
         <div class="container text-center">
             <small>© 2026 Multímetro Virtual – Alisson Juliana Guajan Quinto</small>
+            <a href="{% url 'simuladores:inicio' %}" class="lab-brand-footer">
+                <br>
+                <img src="{% static 'scholar/assets/images/img-footer.png' %}" height="100" alt="logo">
+                <br><br>
+            </a>
+<center>
         </div>
     </footer>
 </body>

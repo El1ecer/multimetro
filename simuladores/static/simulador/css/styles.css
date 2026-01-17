@@ -124,7 +124,7 @@ main, .main-content {
 }
 
 .lab-brand img {
-    height: 84px;
+    height: 60px;
     width: auto;
 }
 
@@ -132,6 +132,17 @@ main, .main-content {
     display: flex;
     align-items: center;
     gap: 10px;
+    text-decoration: none;
+}
+
+.lab-brand-footer img {
+    height: auto;
+    width: 14%;
+}
+
+.lab-brand-footer {
+    display: unset;
+    align-items: center;
     text-decoration: none;
 }
 
