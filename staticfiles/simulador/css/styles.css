@@ -137,7 +137,8 @@ main, .main-content {
 
 .lab-brand-footer img {
     height: auto;
-    width: 14%;
+    padding-top: 25px;
+    width: 20%;
 }
 
 .lab-brand-footer {
