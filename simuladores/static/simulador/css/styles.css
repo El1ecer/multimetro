@@ -124,7 +124,8 @@ main, .main-content {
 }
 
 .lab-brand img {
-    height: 56px;
+    height: 60px;
+    width: auto;
 }
 
 .lab-brand {
@@ -133,6 +134,31 @@ main, .main-content {
     gap: 10px;
     text-decoration: none;
 }
+
+.footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* imagen izquierda, texto centro, imagen derecha */
+    text-align: center;
+}
+
+.lab-brand img,
+.lab-brand-footer img {
+    height: 60px;   /* tamaño definido */
+    width: auto;
+}
+
+.footer-logo {
+        height: 100px; 
+        width: auto;  
+        object-fit: contain; 
+    }
+
+.footer-text {
+    margin: 0 15px;
+    font-size: 0.9rem;
+}
+
 
 .lab-brand-icon {
     font-size: 1.4rem;
